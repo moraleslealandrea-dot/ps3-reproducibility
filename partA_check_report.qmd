@@ -1,0 +1,120 @@
+---
+title: "Reproducibility check: Joel, Teper, & MacDonald (2014)"
+author: "Andrea Morales Leal"
+date: today
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Article
+
+- Citation and DOI: Joel, S., Teper, R., & MacDonald, G. (2014). People overestimate their willingness to reject potential romantic partners by overlooking their concern for other people. *Psychological Science, 25*(12), 2233–2240. DOI: 10.1177/0956797614552828
+- Data/materials repository URL: https://osf.io/873fp/
+- Part A (known case) or Part B (a classmate's project paper): Part A (known case, `partA_empathy_gap`, Study 1)
+- Part B only: the classmate's project repo, and which target outcome is its key effect: Not applicable
+
+## Target outcomes
+
+Written **before** opening the data. Quote each from the paper. In Part B, one of these must
+be the project's key effect.
+
+| # | Target outcome (quoted) | Paper value(s) |
+|---|---|---|
+| 1 | "Only 10 of the 61 participants in the hypothetical condition chose to exchange contact information with the unattractive potential date (16%)." | 10 of 61 (16%) |
+| 2 | "In contrast, 26 of the 71 participants in the real condition chose to exchange contact information (37%)." | 26 of 71 (37%) |
+| 3 | "A chi-square test of independence indicated that participants were significantly less likely to reject the unattractive potential date in the real condition compared with the hypothetical condition, χ2(1, N = 132) = 6.77, p = .009." | χ²(1, N = 132) = 6.77, p = .009 |
+
+## Materials inventory
+
+| Item | Available? | Notes |
+|---|---|---|
+| Raw data | Yes | `Empathy Gap Study 1 data.sav` (132 rows) and `Empathy_Gap_Study_2_data.sav`; only Study 1 is used here |
+| Processed data | Partly | No separate file; the .sav already holds computed scale totals and the analysis variables below the `REQUIRED_VARIABLES_START_BELOW` marker |
+| Codebook / variable descriptions | Partly | Only SPSS variable and value labels inside the .sav (`condition`: 0 = hypothetical, 1 = real; `exchangeinfo`: 1 = yes, 2 = no) |
+| Analysis code | No | Only a template `reproducibilityReport.Rmd` with empty chunks |
+| Preregistration | No | None mentioned in the paper |
+
+## Reproduction
+
+The agent's work, under your direction. Keep all code visible.
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(haven)
+```
+
+```{r}
+#| label: load
+d <- read_sav("partA_empathy_gap/data/Empathy Gap Study 1 data.sav")
+dim(d)
+```
+
+```{r}
+#| label: preprocess
+# condition: 0 = hypothetical, 1 = real; exchangeinfo: 1 = yes, 2 = no
+d1 <- d |>
+  transmute(
+    condition = factor(condition, levels = c(0, 1), labels = c("hypothetical", "real")),
+    exchangeinfo = factor(exchangeinfo, levels = c(1, 2), labels = c("yes", "no"))
+  )
+stopifnot(!anyNA(d1))
+count(d1, condition, exchangeinfo)
+```
+
+```{r}
+#| label: analysis
+# Target outcomes 1 and 2: descriptives
+desc <- d1 |>
+  group_by(condition) |>
+  summarise(n = n(), n_yes = sum(exchangeinfo == "yes"),
+            pct_yes = round(100 * n_yes / n, 1))
+desc
+
+# Target outcome 3: chi-square test of independence, no continuity correction
+tab <- table(d1$condition, d1$exchangeinfo)
+chi <- chisq.test(tab, correct = FALSE)
+chi
+sprintf("X2(%d, N = %d) = %.2f, p = %.3f", chi$parameter, sum(tab),
+        chi$statistic, chi$p.value)
+```
+
+## Checker's verdict
+
+Filled in by you, not the agent.
+
+| # | Paper value | Reproduced value | Verdict (exact / minor / major / not reproducible) | Reason for discrepancy |
+|---|---|---|---|---|
+| 1 | 10 of 61 (16%) | 10 of 61 (16%)  |exact | None |
+| 2 | 26 of 71 (37%) | 26 of 71 (37%) |exact |None |
+| 3 | χ²(1, N = 132) = 6.77, p = .009 |  χ²(1, N = 132) = 6.77, p = .009 |exact |None |
+
+Agent's own claim about success, and whether it was right:
+
+Claude said it finished writing the report and calculated three values in Python (10 out of 61, 26 out of 71, and χ² = 6.77). Claude also said it still needed to run the R code and render the report. I rendered the report myself, and this ran the R code. Then I compared the results with the article. All three values matched, so I concluded that the results were reproduced.
+
+## Time
+
+- Your time (hours): 0.58 (35 minutes)
+- Agent wall-clock time (hours): 0.08 (5 minutes)
+- Stopped at the 4-hour cap? What remained: No.
+
+## Assessment
+
+Is the primary result analytically reproducible? What would have made this take 30 minutes?
+
+Yes. I rendered the report, which ran the R code, and got the same three values as in the article (10 out of 61, 26 out of 71, and χ² = 6.77). I think I could have finished in 30 minutes if I had connected the correct folder from the start.
+
+## AI documentation
+
+- Agent and interface (e.g., Claude Code, Codex CLI, Cursor): Claude in the Claude desktop app (Cowork).
+- Model and version, if the tool reports it: Claude Sonnet 5.5.
+- Context you gave it (files, instructions, any context file): I gave Claude the `partA_empathy_gap` folder and the `partA_check.qmd` report template.
+- Initial prompt: Reproduce the target outcomes of the article in partA_empathy_gap, using partA_check.qmd as the report template. Render the report when you are done.
+- Number of times you intervened, and the most important intervention: I helped once while Claude was working. Claude could not find the project folder because a different folder was connected. I replied “Documents” to tell Claude where to look. After Claude finished, I asked seven more questions about the results and the render. The report stayed the same.
+- Transcript: `transcripts/partA_transcript.md` (copy of the shared chat with all nine messages); shared chat link: https://claude.ai/share/f757a9b0-d41f-4b85-97d6-acd07fedb7e4
