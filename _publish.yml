@@ -2,3 +2,7 @@
   posit-connect-cloud:
     - id: 01a205e9-1ea7-260e-d886-b6d3ff594eca
       url: https://connect.posit.cloud/moraleslealandrea-dot/content/01a205e9-1ea7-260e-d886-b6d3ff594eca
+- source: partB_check_report.qmd
+  posit-connect-cloud:
+    - id: 01a20622-a7fe-b512-f391-cc33a155045a
+      url: https://connect.posit.cloud/moraleslealandrea-dot/content/01a20622-a7fe-b512-f391-cc33a155045a
