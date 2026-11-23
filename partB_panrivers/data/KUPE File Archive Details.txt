@@ -1,0 +1,5 @@
+The files in this repository include an example video of the experiment and flashcard interface ("KUPE Experiment 1 Video..."), and multiple spreadsheets.  These spreadsheets include stimulus materials ("KUPE Stimuli"), the subject-level means that were used for analysis (including for the criterial test, "KUPE Criterial Test Data", and for predictions, "KUPE Globally Differentiated Predictions Data"), and the raw, trial-level means ("KUPE Exp # Trial-Level Data") for each experiment.
+
+Within each of the spreadsheets, the first tab contains a citation and a key for the column headers and values/categories within each column.  For further information or clarifications, please feel free to contact the authors.
+
+In addition, under registrations, the preregistrations for each experiment can be accessed.

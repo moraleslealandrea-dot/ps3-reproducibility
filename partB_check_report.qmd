@@ -1,0 +1,182 @@
+---
+title: "Reproducibility check: Pan & Rivers (2023)"
+author: "Andrea Morales Leal"
+date: today
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Article
+
+- Citation and DOI: Pan, S. C., & Rivers, M. L. (2023). Metacognitive awareness of the pretesting effect improves with self-regulation support. *Memory & Cognition, 51*(6), 1461–1480. DOI: 10.3758/s13421-022-01392-1
+- Data/materials repository URL: https://osf.io/htjqz/ (view-only link in the paper)
+- Part A (known case) or Part B (a classmate's project paper): Part B (Experiment 3, N = 52)
+- Part B only: the classmate's project repo, and which target outcome is its key effect: outcome 1, the cycle × practice condition interaction, F(1, 51) = 10.92, p = .0017, ηp² = .18. I identified it from the class project spreadsheet, which lists the key test of the classmate's replication (2x2 repeated-measures ANOVA, N = 52). I did not look at the classmate's repo or contact them.
+
+## Target outcomes
+
+Written **before** opening the data. Quote each from the paper. In Part B, one of these must
+be the project's key effect.
+
+| # | Target outcome (quoted) | Paper value(s) |
+|---|---|---|
+| 1 | "a significant interaction between cycle and practice condition, F(1, 51) = 10.92, p = .0017, ηp2 = 0.18" (Experiment 3, predictions) | F(1, 51) = 10.92, p = .0017, ηp² = 0.18 |
+| 2 | Table 1 ("Outcomes of analyses of variance for globally differentiated predictions in Experiments 1–4"), Experiment 3, row "Main effect of cycle": df 1, 51; F 8.83; p .0045; ηp2 0.15 | F(1, 51) = 8.83, p = .0045, ηp² = 0.15 |
+| 3 | "Cycle 1 t(51) = 6.67, p < .00001, d = 0.93, BF10 > 100" (Experiment 3, criterial test) | t(51) = 6.67, p < .00001, d = 0.93 |
+| 4 | "Cycle 2 t(51) = 5.99, p < .0001, d = 0.83, BF10 > 100" (Experiment 3, criterial test) | t(51) = 5.99, p < .0001, d = 0.83 |
+
+## Materials inventory
+
+| Item | Available? | Notes |
+|---|---|---|
+| Raw data | Yes | One trial-level spreadsheet per experiment on OSF (`Pan & Rivers (2022) - KUPE Exp 3 Trial-Level Data.xlsx` for Experiment 3), as .xlsx files |
+| Processed data | Yes | Subject-level means used for the analyses: `KUPE Criterial Test Data.xlsx` and `KUPE Globally Differentiated Predictions Data.xlsx` (per the archive details file) |
+| Codebook / variable descriptions | Partly | The archive details file says the first tab of each spreadsheet holds a citation and a key for the column headers; I have not checked this yet |
+| Analysis code | No | No analysis scripts in the OSF archive (only spreadsheets, stimuli, a figure PDF, an example video and a details text file) |
+| Preregistration | Yes | Each experiment is preregistered on OSF; Experiment 3: https://osf.io/64x5k |
+
+## Reproduction
+
+The agent's work, under your direction. Keep all code visible.
+
+```{r}
+#| label: setup
+library(tidyverse)
+```
+
+```{r}
+#| label: load
+library(readxl)
+
+data_dir <- "partB_panrivers/data"
+
+# Experiment 3 only (sheet names per the archive details file)
+preds_raw <- read_excel(
+  file.path(data_dir, "Pan & Rivers (2022) - KUPE Globally Differentiated Predictions Data.xlsx"),
+  sheet = "kupe3gpredsrfile"
+)
+crit_raw <- read_excel(
+  file.path(data_dir, "Pan & Rivers (2022) - KUPE Criterial Test Data.xlsx"),
+  sheet = "kupe3finaltest"
+)
+```
+
+```{r}
+#| label: preprocess
+# Subject-level data: one row per subject x practice condition x cycle.
+# Predictions code the condition as "Pretest"/"Read"; the criterial test as "Pretested"/"Read".
+preds <- preds_raw |>
+  mutate(COND = recode(COND, Pretest = "Pretested"))
+
+# Sanity checks: N = 52, balanced 2 x 2 within-subject design, no missing values
+stopifnot(
+  n_distinct(preds$SUBJ) == 52,
+  n_distinct(crit_raw$SUBJ) == 52,
+  nrow(preds) == 52 * 4,
+  nrow(crit_raw) == 52 * 4,
+  !anyNA(preds), !anyNA(crit_raw)
+)
+
+# Wide format: one column per condition x cycle cell
+preds_wide <- preds |>
+  pivot_wider(id_cols = SUBJ, names_from = c(COND, CYCLE), values_from = PREDICTION)
+crit_wide <- crit_raw |>
+  pivot_wider(id_cols = SUBJ, names_from = c(COND, CYCLE), values_from = SCORE)
+```
+
+```{r}
+#| label: analysis
+# In a 2 x 2 fully within-subject design every effect has 1 numerator df, so the
+# repeated-measures ANOVA F for an effect equals the squared one-sample t on the
+# per-subject contrast for that effect (F = t^2, same p, same df).
+# Partial eta squared = F * df1 / (F * df1 + df2) = t^2 / (t^2 + df2).
+contrast_F <- function(x) {
+  tt <- t.test(x)
+  df2 <- unname(tt$parameter)
+  F <- unname(tt$statistic)^2
+  tibble(F = F, df1 = 1, df2 = df2, p = tt$p.value, np2 = F / (F + df2))
+}
+
+# Outcome 1: cycle x practice condition interaction on predictions
+# (Pretested - Read) in cycle TWO minus the same difference in cycle ONE
+out1 <- contrast_F(with(preds_wide,
+  (Pretested_TWO - Read_TWO) - (Pretested_ONE - Read_ONE)))
+
+# Outcome 2: main effect of cycle on predictions (TWO - ONE, averaged over conditions)
+out2 <- contrast_F(with(preds_wide,
+  (Pretested_TWO + Read_TWO) / 2 - (Pretested_ONE + Read_ONE) / 2))
+
+# Outcomes 3 and 4: criterial test, pretested vs read, paired t-test within each cycle
+paired_t <- function(pretested, read) {
+  diffs <- pretested - read
+  tt <- t.test(pretested, read, paired = TRUE)
+  tibble(t = unname(tt$statistic), df = unname(tt$parameter),
+         p = tt$p.value, d = mean(diffs) / sd(diffs))   # d = mean diff / SD of diffs
+}
+out3 <- paired_t(crit_wide$Pretested_ONE, crit_wide$Read_ONE)
+out4 <- paired_t(crit_wide$Pretested_TWO, crit_wide$Read_TWO)
+```
+
+```{r}
+#| label: results
+# Reproduced values next to the paper values
+results <- tribble(
+  ~outcome, ~statistic, ~paper, ~reproduced,
+  "1. Cycle x condition interaction (predictions)", "F(1, 51)", 10.92, out1$F,
+  "1. Cycle x condition interaction (predictions)", "p",         0.0017, out1$p,
+  "1. Cycle x condition interaction (predictions)", "partial eta^2", 0.18, out1$np2,
+  "2. Main effect of cycle (predictions)",          "F(1, 51)", 8.83, out2$F,
+  "2. Main effect of cycle (predictions)",          "p",         0.0045, out2$p,
+  "2. Main effect of cycle (predictions)",          "partial eta^2", 0.15, out2$np2,
+  "3. Criterial test, cycle 1",                     "t(51)",     6.67, out3$t,
+  "3. Criterial test, cycle 1",                     "p",         NA, out3$p,   # paper: p < .00001
+  "3. Criterial test, cycle 1",                     "d",         0.93, out3$d,
+  "4. Criterial test, cycle 2",                     "t(51)",     5.99, out4$t,
+  "4. Criterial test, cycle 2",                     "p",         NA, out4$p,   # paper: p < .0001
+  "4. Criterial test, cycle 2",                     "d",         0.83, out4$d
+)
+
+knitr::kable(results, digits = c(NA, NA, 4, 6),
+             col.names = c("Target outcome", "Statistic", "Paper", "Reproduced"))
+```
+
+## Checker's verdict
+
+Filled in by you, not the agent.
+
+| # | Paper value | Reproduced value | Verdict (exact / minor / major / not reproducible) | Reason for discrepancy |
+|---|---|---|---|---|
+| 1 | F(1, 51) = 10.92, p = .0017, ηp² = .18 | F(1, 51) = 10.922, p = .001743, ηp² = .1764 | exact | All values agree after rounding. |
+| 2 | F(1, 51) = 8.83, p = .0045, ηp² = .15 | F(1, 51) = 8.833, p = .004506, ηp² = .1476 | exact | All values agree after rounding. |
+| 3 | t(51) = 6.67, p < .00001, d = 0.93 | t(51) = 6.673, p ≈ 1.8e-8, d = 0.925 | exact | All values agree after rounding. |
+| 4 | t(51) = 5.99, p < .0001, d = 0.83 | t(51) = 5.993, p ≈ 2.1e-7, d = 0.831 | exact | All values agree after rounding. |
+
+Agent's own claim about success, and whether it was right:
+
+The agent said it reproduced all four outcomes in Python. I checked this by running the R code and rendering the report in Quarto. The results matched the original paper after rounding. The agent wrote the R code but did not run it; the R code ran when I rendered the report.
+
+## Time
+
+- Your time (hours): 30 minutes (0.50 hours)
+- Agent wall-clock time (hours): 5 minutes (0.08 hours)
+- Stopped at the 4-hour cap? What remained: No. When the agent finished, I still needed to render the report to see the R code.
+
+## Assessment
+
+Is the primary result analytically reproducible? What would have made this take 30 minutes?
+
+Yes, the results are reproducible. I ran the R code in the report and got the same results as the paper at the precision it reported. My part took 30 minutes. Connecting the folder before the first prompt would have saved some time. The authors provided everything I needed.
+
+## AI documentation
+
+- Agent and interface (e.g., Claude Code, Codex CLI, Cursor): Claude desktop app (Cowork).
+- Model and version, if the tool reports it: Claude Sonnet 5.5.
+- Context you gave it (files, instructions, any context file): I gave Claude access to the folder with `partB_check_report.qmd` and `partB_panrivers/data`. I used a prompt that Claude helped me write. I asked it to reproduce the four outcomes, edit only the Reproduction section, and keep all R code visible. I also asked it to check the numbers in Python if R or Quarto was unavailable.
+- Initial prompt: Reproduce the four target outcomes in partB_check_report.qmd (Pan & Rivers 2023, Experiment 3) using the data in partB_panrivers/data. Write the analysis code in the Reproduction section of partB_check_report.qmd (R code chunks, all code visible), and report each reproduced value as a number next to the paper value. Do not edit the target outcomes, the materials inventory, the checker's verdict, Time, Assessment or AI documentation sections: those are mine. If R or Quarto is not available to you, write the R code anyway, verify the numbers with Python, and tell me clearly what you ran and what you did not run. Do not look at files outside this folder.
+- Number of times you intervened, and the most important intervention: I intervened once after my first prompt. I connected the folder and wrote “Try now.” Then the agent could access the files and start the analysis.
+- Transcript: `transcripts/partB_transcript.md` (copy of the shared chat); shared chat link: https://claude.ai/share/b4bdaa64-9290-4c67-bc8b-b3f402bd7f4b

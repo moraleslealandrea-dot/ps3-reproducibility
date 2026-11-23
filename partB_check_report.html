@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Andrea Morales Leal">
+<meta name="dcterms.date" content="2026-11-22">
+
+<title>Reproducibility check: Pan &amp; Rivers (2023)</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="partB_check_report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="partB_check_report_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="partB_check_report_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="partB_check_report_files/libs/quarto-html/popper.min.js"></script>
+<script src="partB_check_report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="partB_check_report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="partB_check_report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="partB_check_report_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="partB_check_report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="partB_check_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="partB_check_report_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#article" id="toc-article" class="nav-link active" data-scroll-target="#article">Article</a></li>
+  <li><a href="#target-outcomes" id="toc-target-outcomes" class="nav-link" data-scroll-target="#target-outcomes">Target outcomes</a></li>
+  <li><a href="#materials-inventory" id="toc-materials-inventory" class="nav-link" data-scroll-target="#materials-inventory">Materials inventory</a></li>
+  <li><a href="#reproduction" id="toc-reproduction" class="nav-link" data-scroll-target="#reproduction">Reproduction</a></li>
+  <li><a href="#checkers-verdict" id="toc-checkers-verdict" class="nav-link" data-scroll-target="#checkers-verdict">Checker’s verdict</a></li>
+  <li><a href="#time" id="toc-time" class="nav-link" data-scroll-target="#time">Time</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  <li><a href="#ai-documentation" id="toc-ai-documentation" class="nav-link" data-scroll-target="#ai-documentation">AI documentation</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Reproducibility check: Pan &amp; Rivers (2023)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Andrea Morales Leal </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="article" class="level2">
+<h2 class="anchored" data-anchor-id="article">Article</h2>
+<ul>
+<li>Citation and DOI: Pan, S. C., &amp; Rivers, M. L. (2023). Metacognitive awareness of the pretesting effect improves with self-regulation support. <em>Memory &amp; Cognition, 51</em>(6), 1461–1480. DOI: 10.3758/s13421-022-01392-1</li>
+<li>Data/materials repository URL: https://osf.io/htjqz/ (view-only link in the paper)</li>
+<li>Part A (known case) or Part B (a classmate’s project paper): Part B (Experiment 3, N = 52)</li>
+<li>Part B only: the classmate’s project repo, and which target outcome is its key effect: outcome 1, the cycle × practice condition interaction, F(1, 51) = 10.92, p = .0017, ηp² = .18. I identified it from the class project spreadsheet, which lists the key test of the classmate’s replication (2x2 repeated-measures ANOVA, N = 52). I did not look at the classmate’s repo or contact them.</li>
+</ul>
+</section>
+<section id="target-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="target-outcomes">Target outcomes</h2>
+<p>Written <strong>before</strong> opening the data. Quote each from the paper. In Part B, one of these must be the project’s key effect.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Target outcome (quoted)</th>
+<th>Paper value(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>“a significant interaction between cycle and practice condition, F(1, 51) = 10.92, p = .0017, ηp2 = 0.18” (Experiment 3, predictions)</td>
+<td>F(1, 51) = 10.92, p = .0017, ηp² = 0.18</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Table 1 (“Outcomes of analyses of variance for globally differentiated predictions in Experiments 1–4”), Experiment 3, row “Main effect of cycle”: df 1, 51; F 8.83; p .0045; ηp2 0.15</td>
+<td>F(1, 51) = 8.83, p = .0045, ηp² = 0.15</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>“Cycle 1 t(51) = 6.67, p &lt; .00001, d = 0.93, BF10 &gt; 100” (Experiment 3, criterial test)</td>
+<td>t(51) = 6.67, p &lt; .00001, d = 0.93</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>“Cycle 2 t(51) = 5.99, p &lt; .0001, d = 0.83, BF10 &gt; 100” (Experiment 3, criterial test)</td>
+<td>t(51) = 5.99, p &lt; .0001, d = 0.83</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="materials-inventory" class="level2">
+<h2 class="anchored" data-anchor-id="materials-inventory">Materials inventory</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Available?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Raw data</td>
+<td>Yes</td>
+<td>One trial-level spreadsheet per experiment on OSF (<code>Pan &amp; Rivers (2022) - KUPE Exp 3 Trial-Level Data.xlsx</code> for Experiment 3), as .xlsx files</td>
+</tr>
+<tr class="even">
+<td>Processed data</td>
+<td>Yes</td>
+<td>Subject-level means used for the analyses: <code>KUPE Criterial Test Data.xlsx</code> and <code>KUPE Globally Differentiated Predictions Data.xlsx</code> (per the archive details file)</td>
+</tr>
+<tr class="odd">
+<td>Codebook / variable descriptions</td>
+<td>Partly</td>
+<td>The archive details file says the first tab of each spreadsheet holds a citation and a key for the column headers; I have not checked this yet</td>
+</tr>
+<tr class="even">
+<td>Analysis code</td>
+<td>No</td>
+<td>No analysis scripts in the OSF archive (only spreadsheets, stimuli, a figure PDF, an example video and a details text file)</td>
+</tr>
+<tr class="odd">
+<td>Preregistration</td>
+<td>Yes</td>
+<td>Each experiment is preregistered on OSF; Experiment 3: https://osf.io/64x5k</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reproduction" class="level2">
+<h2 class="anchored" data-anchor-id="reproduction">Reproduction</h2>
+<p>The agent’s work, under your direction. Keep all code visible.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data_dir <span class="ot">&lt;-</span> <span class="st">"partB_panrivers/data"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Experiment 3 only (sheet names per the archive details file)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>preds_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(data_dir, <span class="st">"Pan &amp; Rivers (2022) - KUPE Globally Differentiated Predictions Data.xlsx"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"kupe3gpredsrfile"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>crit_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(data_dir, <span class="st">"Pan &amp; Rivers (2022) - KUPE Criterial Test Data.xlsx"</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"kupe3finaltest"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject-level data: one row per subject x practice condition x cycle.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictions code the condition as "Pretest"/"Read"; the criterial test as "Pretested"/"Read".</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> preds_raw <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">COND =</span> <span class="fu">recode</span>(COND, <span class="at">Pretest =</span> <span class="st">"Pretested"</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sanity checks: N = 52, balanced 2 x 2 within-subject design, no missing values</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(preds<span class="sc">$</span>SUBJ) <span class="sc">==</span> <span class="dv">52</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(crit_raw<span class="sc">$</span>SUBJ) <span class="sc">==</span> <span class="dv">52</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(preds) <span class="sc">==</span> <span class="dv">52</span> <span class="sc">*</span> <span class="dv">4</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>(crit_raw) <span class="sc">==</span> <span class="dv">52</span> <span class="sc">*</span> <span class="dv">4</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">anyNA</span>(preds), <span class="sc">!</span><span class="fu">anyNA</span>(crit_raw)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Wide format: one column per condition x cycle cell</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>preds_wide <span class="ot">&lt;-</span> preds <span class="sc">|&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> SUBJ, <span class="at">names_from =</span> <span class="fu">c</span>(COND, CYCLE), <span class="at">values_from =</span> PREDICTION)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>crit_wide <span class="ot">&lt;-</span> crit_raw <span class="sc">|&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> SUBJ, <span class="at">names_from =</span> <span class="fu">c</span>(COND, CYCLE), <span class="at">values_from =</span> SCORE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In a 2 x 2 fully within-subject design every effect has 1 numerator df, so the</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># repeated-measures ANOVA F for an effect equals the squared one-sample t on the</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># per-subject contrast for that effect (F = t^2, same p, same df).</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Partial eta squared = F * df1 / (F * df1 + df2) = t^2 / (t^2 + df2).</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>contrast_F <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  df2 <span class="ot">&lt;-</span> <span class="fu">unname</span>(tt<span class="sc">$</span>parameter)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  F <span class="ot">&lt;-</span> <span class="fu">unname</span>(tt<span class="sc">$</span>statistic)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">F =</span> F, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> df2, <span class="at">p =</span> tt<span class="sc">$</span>p.value, <span class="at">np2 =</span> F <span class="sc">/</span> (F <span class="sc">+</span> df2))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Outcome 1: cycle x practice condition interaction on predictions</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># (Pretested - Read) in cycle TWO minus the same difference in cycle ONE</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>out1 <span class="ot">&lt;-</span> <span class="fu">contrast_F</span>(<span class="fu">with</span>(preds_wide,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  (Pretested_TWO <span class="sc">-</span> Read_TWO) <span class="sc">-</span> (Pretested_ONE <span class="sc">-</span> Read_ONE)))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Outcome 2: main effect of cycle on predictions (TWO - ONE, averaged over conditions)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> <span class="fu">contrast_F</span>(<span class="fu">with</span>(preds_wide,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  (Pretested_TWO <span class="sc">+</span> Read_TWO) <span class="sc">/</span> <span class="dv">2</span> <span class="sc">-</span> (Pretested_ONE <span class="sc">+</span> Read_ONE) <span class="sc">/</span> <span class="dv">2</span>))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Outcomes 3 and 4: criterial test, pretested vs read, paired t-test within each cycle</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>paired_t <span class="ot">&lt;-</span> <span class="cf">function</span>(pretested, read) {</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  diffs <span class="ot">&lt;-</span> pretested <span class="sc">-</span> read</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(pretested, read, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">t =</span> <span class="fu">unname</span>(tt<span class="sc">$</span>statistic), <span class="at">df =</span> <span class="fu">unname</span>(tt<span class="sc">$</span>parameter),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">p =</span> tt<span class="sc">$</span>p.value, <span class="at">d =</span> <span class="fu">mean</span>(diffs) <span class="sc">/</span> <span class="fu">sd</span>(diffs))   <span class="co"># d = mean diff / SD of diffs</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>out3 <span class="ot">&lt;-</span> <span class="fu">paired_t</span>(crit_wide<span class="sc">$</span>Pretested_ONE, crit_wide<span class="sc">$</span>Read_ONE)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>out4 <span class="ot">&lt;-</span> <span class="fu">paired_t</span>(crit_wide<span class="sc">$</span>Pretested_TWO, crit_wide<span class="sc">$</span>Read_TWO)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduced values next to the paper values</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>outcome, <span class="sc">~</span>statistic, <span class="sc">~</span>paper, <span class="sc">~</span>reproduced,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"1. Cycle x condition interaction (predictions)"</span>, <span class="st">"F(1, 51)"</span>, <span class="fl">10.92</span>, out1<span class="sc">$</span>F,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"1. Cycle x condition interaction (predictions)"</span>, <span class="st">"p"</span>,         <span class="fl">0.0017</span>, out1<span class="sc">$</span>p,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"1. Cycle x condition interaction (predictions)"</span>, <span class="st">"partial eta^2"</span>, <span class="fl">0.18</span>, out1<span class="sc">$</span>np2,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2. Main effect of cycle (predictions)"</span>,          <span class="st">"F(1, 51)"</span>, <span class="fl">8.83</span>, out2<span class="sc">$</span>F,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2. Main effect of cycle (predictions)"</span>,          <span class="st">"p"</span>,         <span class="fl">0.0045</span>, out2<span class="sc">$</span>p,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2. Main effect of cycle (predictions)"</span>,          <span class="st">"partial eta^2"</span>, <span class="fl">0.15</span>, out2<span class="sc">$</span>np2,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"3. Criterial test, cycle 1"</span>,                     <span class="st">"t(51)"</span>,     <span class="fl">6.67</span>, out3<span class="sc">$</span>t,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"3. Criterial test, cycle 1"</span>,                     <span class="st">"p"</span>,         <span class="cn">NA</span>, out3<span class="sc">$</span>p,   <span class="co"># paper: p &lt; .00001</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"3. Criterial test, cycle 1"</span>,                     <span class="st">"d"</span>,         <span class="fl">0.93</span>, out3<span class="sc">$</span>d,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"4. Criterial test, cycle 2"</span>,                     <span class="st">"t(51)"</span>,     <span class="fl">5.99</span>, out4<span class="sc">$</span>t,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"4. Criterial test, cycle 2"</span>,                     <span class="st">"p"</span>,         <span class="cn">NA</span>, out4<span class="sc">$</span>p,   <span class="co"># paper: p &lt; .0001</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"4. Criterial test, cycle 2"</span>,                     <span class="st">"d"</span>,         <span class="fl">0.83</span>, out4<span class="sc">$</span>d</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(results, <span class="at">digits =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">6</span>),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Target outcome"</span>, <span class="st">"Statistic"</span>, <span class="st">"Paper"</span>, <span class="st">"Reproduced"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 58%">
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Target outcome</th>
+<th style="text-align: left;">Statistic</th>
+<th style="text-align: right;">Paper</th>
+<th style="text-align: right;">Reproduced</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Cycle x condition interaction (predictions)</td>
+<td style="text-align: left;">F(1, 51)</td>
+<td style="text-align: right;">10.9200</td>
+<td style="text-align: right;">10.922276</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1. Cycle x condition interaction (predictions)</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: right;">0.0017</td>
+<td style="text-align: right;">0.001743</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1. Cycle x condition interaction (predictions)</td>
+<td style="text-align: left;">partial eta^2</td>
+<td style="text-align: right;">0.1800</td>
+<td style="text-align: right;">0.176387</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Main effect of cycle (predictions)</td>
+<td style="text-align: left;">F(1, 51)</td>
+<td style="text-align: right;">8.8300</td>
+<td style="text-align: right;">8.833003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2. Main effect of cycle (predictions)</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: right;">0.0045</td>
+<td style="text-align: right;">0.004506</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Main effect of cycle (predictions)</td>
+<td style="text-align: left;">partial eta^2</td>
+<td style="text-align: right;">0.1500</td>
+<td style="text-align: right;">0.147628</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Criterial test, cycle 1</td>
+<td style="text-align: left;">t(51)</td>
+<td style="text-align: right;">6.6700</td>
+<td style="text-align: right;">6.673214</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3. Criterial test, cycle 1</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Criterial test, cycle 1</td>
+<td style="text-align: left;">d</td>
+<td style="text-align: right;">0.9300</td>
+<td style="text-align: right;">0.925408</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Criterial test, cycle 2</td>
+<td style="text-align: left;">t(51)</td>
+<td style="text-align: right;">5.9900</td>
+<td style="text-align: right;">5.993155</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4. Criterial test, cycle 2</td>
+<td style="text-align: left;">p</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Criterial test, cycle 2</td>
+<td style="text-align: left;">d</td>
+<td style="text-align: right;">0.8300</td>
+<td style="text-align: right;">0.831101</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="checkers-verdict" class="level2">
+<h2 class="anchored" data-anchor-id="checkers-verdict">Checker’s verdict</h2>
+<p>Filled in by you, not the agent.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Paper value</th>
+<th>Reproduced value</th>
+<th>Verdict (exact / minor / major / not reproducible)</th>
+<th>Reason for discrepancy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>F(1, 51) = 10.92, p = .0017, ηp² = .18</td>
+<td>F(1, 51) = 10.922, p = .001743, ηp² = .1764</td>
+<td>exact</td>
+<td>All values agree after rounding.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>F(1, 51) = 8.83, p = .0045, ηp² = .15</td>
+<td>F(1, 51) = 8.833, p = .004506, ηp² = .1476</td>
+<td>exact</td>
+<td>All values agree after rounding.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>t(51) = 6.67, p &lt; .00001, d = 0.93</td>
+<td>t(51) = 6.673, p ≈ 1.8e-8, d = 0.925</td>
+<td>exact</td>
+<td>All values agree after rounding.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>t(51) = 5.99, p &lt; .0001, d = 0.83</td>
+<td>t(51) = 5.993, p ≈ 2.1e-7, d = 0.831</td>
+<td>exact</td>
+<td>All values agree after rounding.</td>
+</tr>
+</tbody>
+</table>
+<p>Agent’s own claim about success, and whether it was right:</p>
+<p>The agent said it reproduced all four outcomes in Python. I checked this by running the R code and rendering the report in Quarto. The results matched the original paper after rounding. The agent wrote the R code but did not run it; the R code ran when I rendered the report.</p>
+</section>
+<section id="time" class="level2">
+<h2 class="anchored" data-anchor-id="time">Time</h2>
+<ul>
+<li>Your time (hours): 30 minutes (0.50 hours)</li>
+<li>Agent wall-clock time (hours): 5 minutes (0.08 hours)</li>
+<li>Stopped at the 4-hour cap? What remained: No.&nbsp;When the agent finished, I still needed to render the report to see the R code.</li>
+</ul>
+</section>
+<section id="assessment" class="level2">
+<h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
+<p>Is the primary result analytically reproducible? What would have made this take 30 minutes?</p>
+<p>Yes, the results are reproducible. I ran the R code in the report and got the same results as the paper at the precision it reported. My part took 30 minutes. Connecting the folder before the first prompt would have saved some time. The authors provided everything I needed.</p>
+</section>
+<section id="ai-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="ai-documentation">AI documentation</h2>
+<ul>
+<li>Agent and interface (e.g., Claude Code, Codex CLI, Cursor): Claude desktop app (Cowork).</li>
+<li>Model and version, if the tool reports it: Claude Sonnet 5.5.</li>
+<li>Context you gave it (files, instructions, any context file): I gave Claude access to the folder with <code>partB_check_report.qmd</code> and <code>partB_panrivers/data</code>. I used a prompt that Claude helped me write. I asked it to reproduce the four outcomes, edit only the Reproduction section, and keep all R code visible. I also asked it to check the numbers in Python if R or Quarto was unavailable.</li>
+<li>Initial prompt: Reproduce the four target outcomes in partB_check_report.qmd (Pan &amp; Rivers 2023, Experiment 3) using the data in partB_panrivers/data. Write the analysis code in the Reproduction section of partB_check_report.qmd (R code chunks, all code visible), and report each reproduced value as a number next to the paper value. Do not edit the target outcomes, the materials inventory, the checker’s verdict, Time, Assessment or AI documentation sections: those are mine. If R or Quarto is not available to you, write the R code anyway, verify the numbers with Python, and tell me clearly what you ran and what you did not run. Do not look at files outside this folder.</li>
+<li>Number of times you intervened, and the most important intervention: I intervened once after my first prompt. I connected the folder and wrote “Try now.” Then the agent could access the files and start the analysis.</li>
+<li>Transcript: <code>transcripts/partB_transcript.md</code> (copy of the shared chat); shared chat link: https://claude.ai/share/b4bdaa64-9290-4c67-bc8b-b3f402bd7f4b</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
